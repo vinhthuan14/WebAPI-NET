@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using MyWebApiApp.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,7 +11,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
+builder.Services.AddDbContext<MyDBContext>(option =>
+{
+    option.UseSqlServer(app.Configuration.GetConnectionString("MyDb"));
+});
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
