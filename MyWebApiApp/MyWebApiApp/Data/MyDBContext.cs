@@ -4,7 +4,7 @@ namespace MyWebApiApp.Data
 {
     public class MyDBContext : DbContext
     {
-        public MyDBContext(DbContextOptions options): base(options)
+        public MyDBContext(DbContextOptions<MyDBContext>options): base(options)
         {
 
         }
